@@ -142,7 +142,7 @@ In this exercise, we use two different (simple) algorithms to identify features:
 
 #### Machine learning with caret: the knn algorithm
 
-```{r, echo=FALSE, eval=FALSE}
+```{r, echo=FALSE, eval=T}
 # Machine learning with caret
 path_to_folder  <-  "~/ICIMOD/Data/Koshi/landsat/feb24"
 raslist2 <- paste0(path_to_folder,"/",(list.files(path_to_folder)))[-1]
@@ -179,7 +179,7 @@ conf_mat <- confusionMatrix(knnPredict,testset$levs)
 ```
 
 The plot:
-```{r,echo=FALSE, eval=FALSE}
+```{r,echo=FALSE, eval=T}
 plot(knn.mod)
 ```
 
@@ -187,26 +187,26 @@ Important characteristics
  
  - Accuracy
 
-```{r, echo=F, eval=FALSE}
+```{r, echo=F, eval=T}
 conf_mat$overall[1]
 ```
 
 - Confusion Matrix
 
-```{r,echo=FALSE,eval=FALSE}
+```{r,echo=FALSE,eval=T}
 conf_mat$table
 ```
 
 - Categorizing various factors by group
 
-```{r, echo=FALSE,eval=FALSE}
+```{r, echo=FALSE,eval=T}
 conf_mat$byClass
 ```
 
 #### Machine learning with mlr3: the CART algorithm
 
 
-```{r, echo=FALSE,eval=FALSE}
+```{r, echo=FALSE,eval=T}
 library(mlr3)
 library(kknn)
 task = TaskClassif$new(
@@ -221,13 +221,13 @@ measure <- msr("classif.acc")
 
 - Accuracy
 
-```{r, echo=F,eval=FALSE}
+```{r, echo=F,eval=T}
 pred$score(measure)
 ```
 
 - Confusion Matrix
 
-```{r, echo=F,eval=FALSE}
+```{r, echo=F,eval=T}
 pred$confusion
 ```
 
@@ -235,7 +235,7 @@ pred$confusion
 
 The following map (unfortunately, not interactive) shows the predicted points with the categories specified.
 
-```{r, echo=FALSE, eval=F, fig.width=12}
+```{r, echo=FALSE, eval=T, fig.width=12}
 new.data <- rand.dt[testset2][,c('x','y')]
 setnames(new.data, c('x','y'),c('lon','lat'))
 new.data$preds <- pred$response
